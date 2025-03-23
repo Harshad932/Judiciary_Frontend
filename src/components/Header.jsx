@@ -9,26 +9,57 @@ const Header = () => {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
+  // Function to handle scrolling to sections
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    // Close mobile menu after clicking
+    setMobileMenuOpen(false);
+  };
+
   return (
     <header>
-      <div className="container">
+      <div className="home-container">
         <nav>
           <Link to="/" className="logo">
             Legal<span>Assist</span>
           </Link>
           <div className={`nav-links ${mobileMenuOpen ? 'active' : ''}`}>
-            <Link to="/#features">Features</Link>
-            <Link to="/#how-it-works">How It Works</Link>
-            <Link to="/#track-case">Track Case</Link>
-            <Link to="/#testimonials">Testimonials</Link>
+            {/* Replace Link components with buttons for same-page navigation */}
+            <button 
+              onClick={() => scrollToSection('features')} 
+              className="nav-button"
+            >
+              Features
+            </button>
+            <button 
+              onClick={() => scrollToSection('how-it-works')} 
+              className="nav-button"
+            >
+              How It Works
+            </button>
+            <button 
+              onClick={() => scrollToSection('track-case')} 
+              className="nav-button"
+            >
+              Track Case
+            </button>
+            <button 
+              onClick={() => scrollToSection('testimonials')} 
+              className="nav-button"
+            >
+              Testimonials
+            </button>
           </div>
           <button className="mobile-menu-btn" onClick={toggleMobileMenu}>
             ☰
           </button>
-          <Link to="/chatbot" className="btn">
+          <Link to="/chatbot" className="home-btn">
             AI Assistant
           </Link>
-          <Link to="/admin-login" className="btn">
+          <Link to="/admin-login" className="home-btn">
             Admin Login
           </Link>
         </nav>

@@ -3,9 +3,17 @@ import { Link } from 'react-router-dom';
 import '../assets/styles/Footer.css';
 
 const Footer = () => {
+  // Function to handle scrolling to sections
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <footer>
-      <div className="container">
+      <div className="home-container">
         <div className="footer-content">
           <div className="footer-column">
             <h3>LegalAssist</h3>
@@ -14,9 +22,30 @@ const Footer = () => {
           <div className="footer-column">
             <h3>Quick Links</h3>
             <ul>
-              <li><Link to="/#features">Features</Link></li>
-              <li><Link to="/#how-it-works">How It Works</Link></li>
-              <li><Link to="/#track-case">Track Case</Link></li>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('features')} 
+                  className="footer-nav-button"
+                >
+                  Features
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('how-it-works')} 
+                  className="footer-nav-button"
+                >
+                  How It Works
+                </button>
+              </li>
+              <li>
+                <button 
+                  onClick={() => scrollToSection('track-case')} 
+                  className="footer-nav-button"
+                >
+                  Track Case
+                </button>
+              </li>
               <li><Link to="/chatbot">AI Assistant</Link></li>
             </ul>
           </div>
@@ -33,8 +62,8 @@ const Footer = () => {
             <h3>Contact Us</h3>
             <ul>
               <li>Email: info@legalassist.com</li>
-              <li>Phone: +91 98765 43210</li>
-              <li>Address: Tech Hub, Sector 62, Noida</li>
+              <li>Phone: +91 8767260519</li>
+              <li>Address: PVG, Pune</li>
             </ul>
           </div>
         </div>

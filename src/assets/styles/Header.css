@@ -6,7 +6,7 @@ header {
     z-index: 100;
   }
   
-  header .container {
+  header .home-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
@@ -46,7 +46,7 @@ header {
     color: #4a6eb5;
   }
   
-  .btn {
+  .home-btn {
     background-color: #f5f7fa;
     color: #4a6eb5;
     padding: 10px 16px;
@@ -59,7 +59,7 @@ header {
     margin-left: 15px;
   }
   
-  .btn:hover {
+  .home-btn:hover {
     background-color: #e8ecf4;
   }
   
@@ -93,6 +93,23 @@ header {
       display: block;
     }
   }
+
+  .nav-button {
+    background: none;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    font-size: inherit;
+    font-family: inherit;
+    padding: 0;
+    margin: 0 15px;
+    text-decoration: none;
+  }
+  
+  .nav-button:hover {
+    color: #4a90e2; /* Or whatever accent color you're using */
+    text-decoration: underline;
+  }
   
   @media (max-width: 640px) {
     nav {
@@ -105,7 +122,7 @@ header {
       margin-right: auto;
     }
     
-    .btn {
+    .home-btn {
       margin-top: 10px;
       margin-left: 0;
       margin-right: 10px;

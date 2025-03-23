@@ -1,11 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../assets/styles/AdminLogin.css';
 
 const AdminLogin = () => {
   const [publicUser, setPublicUser] = useState({ username: "", password: "" });
   const [loading, setLoading] = useState(false);
   const [notification, setNotification] = useState({ message: '', type: '' });
+  const [animation, setAnimation] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Trigger animation after component mounts
+    setTimeout(() => {
+      setAnimation(true);
+    }, 100);
+  }, []);
 
   const handlePublicInputChange = (e) => {
     const { name, value } = e.target;
@@ -16,6 +25,10 @@ const AdminLogin = () => {
     event.preventDefault();
     setLoading(true);
     setNotification({ message: '', type: '' });
+
+    // Add login animation
+    setAnimation(false);
+    setTimeout(() => setAnimation(true), 300);
 
     try {
       const response = await fetch("http://localhost:4000/admin/login", {
@@ -43,66 +56,83 @@ const AdminLogin = () => {
   };
 
   const handleForgotPassword = () => {
-    navigate("/admin/forgotPassword");
+    navigate("/admin/forgot-password");
   };
 
   return (
-    <div>
-      <header>
-        <div className="container">
-          <nav>
-            <a href="/" className="logo">Legal<span>Assist</span></a>
-            <a href="/" className="btn">Back to Main Site</a>
-          </nav>
+    <div className="login-container">
+      <div className="login-bg-animation">
+        {[...Array(10)].map((_, i) => (
+          <div key={i} className="login-cube"></div>
+        ))}
+      </div>
+      
+      <div className="login-header">
+        <div className="login-logo">
+          <span className="logo-text">Legal</span>
+          <span className="logo-highlight">Assist</span>
         </div>
-      </header>
-
-      <div className="admin-login-container">
-        <h2>Admin Portal</h2>
-        {notification.message && (
-          <div className={`notification ${notification.type}`}>
-            {notification.message}
+        <div className="login-back-link" onClick={() => navigate('/')}>
+          <i className="login-back-icon">←</i> Back to Main Site
+        </div>
+      </div>
+      
+      <div className={`login-form-container ${animation ? 'animate-in' : ''}`}>
+        <div className="login-card-3d-wrapper">
+          <div className="login-card-front">
+            <div className="login-title">Admin Portal</div>
+            
+            {notification.message && (
+              <div className={`login-notification login-notification-${notification.type}`}>
+                {notification.message}
+              </div>
+            )}
+            
+            <form className="login-form" onSubmit={handleSubmit}>
+              <div className="login-form-group">
+                <label className="login-label" htmlFor="username">Username</label>
+                <div className="login-input-container">
+                  <input
+                    className="login-input"
+                    type="text"
+                    id="username"
+                    name="username"
+                    value={publicUser.username}
+                    onChange={handlePublicInputChange}
+                    required
+                  />
+                  <div className="login-input-focus-effect"></div>
+                </div>
+              </div>
+              
+              <div className="login-form-group">
+                <label className="login-label" htmlFor="password">Password</label>
+                <div className="login-input-container">
+                  <input
+                    className="login-input"
+                    type="password"
+                    id="password"
+                    name="password"
+                    value={publicUser.password}
+                    onChange={handlePublicInputChange}
+                    required
+                  />
+                  <div className="login-input-focus-effect"></div>
+                </div>
+              </div>
+              
+              <button className="login-submit-btn" type="submit" disabled={loading}>
+                {loading ? 
+                  <div className="login-spinner"></div> : 
+                  <span className="login-btn-text">Sign In</span>
+                }
+              </button>
+            </form>
+            
+            <div className="login-forgot-password" onClick={handleForgotPassword}>
+              Forgot password?
+            </div>
           </div>
-        )}
-        <form onSubmit={handleSubmit}>
-          <div className="admin-form-group">
-            <label htmlFor="adminEmail">Username</label>
-            <i className="fas fa-envelope input-icon"></i>
-            <input
-              type="text"
-              id="adminEmail"
-              name="username"
-              placeholder="Enter your Username"
-              value={publicUser.username}
-              onChange={handlePublicInputChange}
-              required
-            />
-          </div>
-          <div className="admin-form-group">
-            <label htmlFor="adminPassword">Password</label>
-            <i className="fas fa-lock input-icon"></i>
-            <input
-              type="password"
-              id="adminPassword"
-              name="password"
-              placeholder="Enter your password"
-              value={publicUser.password}
-              onChange={handlePublicInputChange}
-              required
-            />
-          </div>
-          <button 
-            type="submit" 
-            className={`btn btn-accent ${loading ? 'loading' : ''}`}
-            disabled={loading}
-          >
-            {loading ? 'Signing in...' : 'Sign In'}
-          </button>
-        </form>
-        <div className="form-footer">
-          <button className="forgot-password-btn" onClick={handleForgotPassword}>
-            Forgot password?
-          </button>
         </div>
       </div>
     </div>

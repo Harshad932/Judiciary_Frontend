@@ -38,13 +38,14 @@ const Home = () => {
 
   return (
     <div className='home-all'>
+      <div className='home-body'>
     <Header/>
     <main>
-      <section className="hero">
-        <div className="container">
+      <section className="home-hero">
+        <div className="home-container">
           <h1>Simplifying Legal Access for Everyone</h1>
           <p>Get help navigating legal processes, track your cases, and find answers to your legal questions with our AI-powered platform.</p>
-          <div className="hero-buttons">
+          <div className="home-hero-buttons">
             <Link to="/chatbot" className="btn btn-accent">Chat with Legal AI</Link>
             <a href="#track-case" className="btn">Track Your Case</a>
           </div>
@@ -52,8 +53,8 @@ const Home = () => {
       </section>
 
       <section id="features" className="features">
-        <div className="container">
-          <h2 className="section-title">How We Can Help You</h2>
+        <div className="home-container">
+          <h2 className="home-section-title">How We Can Help You</h2>
           <div className="features-grid">
             <div className="feature-card">
               <div className="feature-icon">💬</div>
@@ -75,8 +76,8 @@ const Home = () => {
       </section>
 
       <section id="track-case" className="track-case">
-        <div className="container">
-          <h2 className="section-title">Track Your Case Status</h2>
+        <div className="home-container">
+          <h2 className="home-section-title">Track Your Case Status</h2>
           <div className="track-form">
             <form id="case-tracking-form" onSubmit={handleSearch}>
               <div className="form-group">
@@ -92,7 +93,7 @@ const Home = () => {
               </div>
               <button 
                 type="submit" 
-                className="btn btn-accent" 
+                className="home-btn home-btn-accent" 
                 disabled={isLoading}
               >
                 {isLoading ? 'Searching...' : 'Track Now'}
@@ -109,8 +110,8 @@ const Home = () => {
       </section>
 
       <section id="how-it-works" className="how-it-works">
-        <div className="container">
-          <h2 className="section-title">How It Works</h2>
+        <div className="home-container">
+          <h2 className="home-section-title">How It Works</h2>
           <div className="steps">
             <div className="step">
               <div className="step-number">1</div>
@@ -132,8 +133,8 @@ const Home = () => {
       </section>
 
       <section id="testimonials" className="testimonials">
-        <div className="container">
-          <h2 className="section-title">What People Say</h2>
+        <div className="home-container">
+          <h2 className="home-section-title">What People Say</h2>
           <div className="testimonial">
             <p className="testimonial-text">"I had no idea how to navigate the legal system for my property dispute. LegalAssist guided me through the entire process and helped me track my case easily."</p>
             <p className="testimonial-author">- Rohit S., Delhi</p>
@@ -142,14 +143,15 @@ const Home = () => {
       </section>
 
       <section className="cta">
-        <div className="container">
+        <div className="home-container">
           <h2>Ready to Resolve Your Legal Issues?</h2>
           <p>Our AI-powered platform is here to help you navigate the complex legal landscape.</p>
-          <Link to="/chatbot" className="btn btn-accent">Get Started Now</Link>
+          <Link to="/chatbot" className="home-btn home-btn-accent">Get Started Now</Link>
         </div>
       </section>
     </main>
     <Footer/>
+    </div>
     </div>
   );
 };

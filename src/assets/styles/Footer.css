@@ -4,7 +4,7 @@ footer {
     padding: 60px 0 20px;
   }
   
-  footer .container {
+  footer .home-container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
@@ -54,6 +54,30 @@ footer {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     color: #b0bec5;
   }
+
+  /* Add this to your Footer.css file */
+.footer-nav-button {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  text-align: left;
+  display: inline;
+}
+
+.footer-nav-button:hover {
+  text-decoration: underline;
+}
+
+/* Make sure list items maintain proper spacing */
+.footer-column ul li {
+  margin-bottom: 8px;
+}
   
   @media (max-width: 920px) {
     .footer-content {
